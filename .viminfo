@@ -8,15 +8,16 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/1.
+~MSle0~/first
 
 # Last Substitute String:
 $
 
 # Command Line History (newest to oldest):
-:q
 :wq
+:q
 :w
+:PluginInstall
 :q!
 :WQ
 :W
@@ -31,6 +32,11 @@ $
 :ww
 
 # Search String History (newest to oldest):
+?/first
+?/PS1
+?/LS
+?/PS
+?/virt
 ?/1.
 ?/fr
 ?/re
@@ -81,59 +87,6 @@ $
 ?/banan
 ?/max-
 ?/pn
-?/break
-?/epri
-?/boom
-?/verb
-? \<stdscr\>
-?/rawSp
-?/banana
-?/home/jlc/.virtualenvs/mopidy/bin/mopidy','--config','~/.config/mopidy/spectrum.conf'],
-?/main
-?/print
-?/alias
-?/Hand
-?/Handl
-?/red
-?/self.c
-?/prin
-?/blue
-?/cHigh
-?/MPR
-?/M`
-?/MP
-?/MPRI
-?/enable
-?/bott
-?/itera
-?/self
-?/green
-?/0
-?/-
-?/payload
-?/50
-?/4
-?/JLC
-?/touch
-?/hide
-?/-3
-?/64
-?/Ex
-?/freq
-?/32
-?/bands
-?/potato
-?/eos
-?/value
-?/gcc
-?/maker
-?/test
-?/bus
-?/eleme
-?/messa
-?/bus 
-?/dmed
-?/playbi
 
 # Expression History (newest to oldest):
 
@@ -143,45 +96,74 @@ $
 
 # Registers:
 "0	LINE	0
-	    text-align-last: center;
+	    myvar='first'
 "1	LINE	0
-	Things are things
+	    myvar='second'
 "2	LINE	0
-	
+	    myvar='first'
 "3	LINE	0
-	<iframe width="854" height="480" src="https://www.youtube.com/embed/oJ_n7qzUJ5w?list=FLY3v7rSUYDgeHpAFnWOR1Tg" frameborder="0" gesture="mddedia" allowfullscreen></iframe>
+	    myvar='third'
 "4	LINE	0
-	
+	    myvar='second'
 "5	LINE	0
 	
 "6	LINE	0
-	    color: green;
+	1317
+<LS_COLORS='rs=0:di=5;33:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:';
+	export LS_COLORS
 "7	LINE	0
-	
+	1317
+<LS_COLORS='rs=0:di=1;35:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:';
+	export LS_COLORS
 "8	LINE	0
-	      font-family: Consolas, "Consolas for Powerline", "Courier New", Courier, monospace;
+	export playlist="Mopidy (by 1218989400)"
+	export WORKON_HOME=$HOME/.virtualenvs
+	export PROJECT_HOME=$HOME/Devel
+	source /usr/local/bin/virtualenvwrapper.sh
 "9	LINE	0
-	
+	Things are things
 "q@	CHAR	0
 	/Needi**wwwwi€kb** 
 ""-	CHAR	0
-	HOMEPAGE 
+	}
 
 # global variables:
 
 # File marks:
-'0  2000  0  ~/.bash_history
-'1  6  90  ~/jlchamaa.github.io/index.md
-'2  19  116  ~/jlchamaa.github.io/projects/ardopilot.md
-'3  9  24  ~/jlchamaa.github.io/css/style.scss
-'4  8  20  ~/jlchamaa.github.io/css/style.scss
-'5  40  0  ~/jlchamaa.github.io/hobbies/cubes.md
-'6  1  0  ~/jlchamaa.github.io/hobbies/chess.md
-'7  1  0  ~/jlchamaa.github.io/hobbies/basketball.md
-'8  1  0  ~/jlchamaa.github.io/projects/mirror.md
-'9  20  21  ~/jlchamaa.github.io/projects/soundscape.md
+'0  111  0  ~/.bashrc
+'1  1  0  ~/.dircolors
+'2  60  53  ~/.bashrc
+'3  69  17  ~/.bashrc
+'4  63  15  ~/.bashrc
+'5  2  15  ~/mycols.sh
+'6  1  0  ~/myCols.sh
+'7  3  15  ~/mycols.sh
+'8  1  0  ~/mycols.sh
+'9  56  0  ~/.bashrc
 
 # Jumplist (newest first):
+-'  111  0  ~/.bashrc
+-'  1  0  ~/.bashrc
+-'  1  0  ~/.dircolors
+-'  60  53  ~/.bashrc
+-'  69  17  ~/.bashrc
+-'  63  15  ~/.bashrc
+-'  2  15  ~/mycols.sh
+-'  1  0  ~/mycols.sh
+-'  1  0  ~/myCols.sh
+-'  3  15  ~/mycols.sh
+-'  56  0  ~/.bashrc
+-'  1  0  /mnt/c/Users/Jean-Luc/Downloads/colortool/schemes/Afterglow.itermcolors
+-'  1  0  /mnt/c/Users/Jean-Luc/Downloads/colortool/schemes/campbell.ini
+-'  1  0  /mnt/c/Users/Jean-Luc/Desktop/Notes/Meeting with Lavanya
+-'  1  0  /etc/profile
+-'  1  0  /usr/bin/dircolors
+-'  99  0  ~/.bashrc
+-'  114  0  ~/.bashrc
+-'  115  0  ~/.bashrc
+-'  1  0  ~/.bash
+-'  1  0  ~/color-theme-molokai/molokai.sh
+-'  1  0  ~/color-theme-molokai/README.md
 -'  2000  0  ~/.bash_history
 -'  1  0  ~/.bash_history
 -'  6  90  ~/jlchamaa.github.io/index.md
@@ -258,30 +240,68 @@ $
 -'  30  12  ~/jlchamaa.github.io/projects/soundscape.md
 -'  2  0  ~/jlchamaa.github.io/projects/soundscape.md
 -'  6  6  ~/jlchamaa.github.io/projects/soundscape.md
--'  22  0  ~/jlchamaa.github.io/_layouts/fbdefault.html
--'  1  0  ~/jlchamaa.github.io/_layouts/fbdefault.html
--'  3  0  ~/jlchamaa.github.io/projects/soundscape.md
--'  4  0  ~/jlchamaa.github.io/projects/led.md
--'  5  0  ~/jlchamaa.github.io/projects/led.md
--'  4  0  ~/jlchamaa.github.io/projects/index.md
--'  1  0  ~/jlchamaa.github.io/projects/index.md
--'  1  0  ~/jlchamaa.github.io/hobbies/index.md
--'  3  23  ~/jlchamaa.github.io/projects/led.md
--'  1  0  ~/jlchamaa.github.io/projects/cubetimer.md
--'  5  11  ~/jlchamaa.github.io/hobbies/basketball.md
--'  6  12  ~/jlchamaa.github.io/projects/cubetimer.md
--'  1  0  ~/Rise/scripts/netcheck.sh
--'  11  23  ~/.config/mopidy/mopidy.conf
--'  1  0  ~/.config/mopidy/mopidy.conf
--'  1  0  /tmp/crontab.4y1PBP/crontab
--'  1  0  /tmp/crontab.PjnHZ8/crontab
--'  1  0  /tmp/crontab.F0xd9h/crontab
--'  22  84  ~/jlchamaa.github.io/hobbies/cubes.md
--'  23  0  ~/jlchamaa.github.io/hobbies/cubes.md
--'  20  109  ~/jlchamaa.github.io/hobbies/cubes.md
--'  19  116  ~/jlchamaa.github.io/projects/ardopilot.md
 
 # History of marks within files (newest to oldest):
+
+> ~/.bashrc
+	"	111	0
+	.	60	53
+	+	115	0
+	+	115	0
+	+	115	0
+	+	115	15
+	+	60	87
+	+	115	0
+	+	1	0
+	+	61	15
+	+	63	0
+	+	71	16
+	+	63	15
+	+	71	0
+	+	69	16
+	+	63	0
+	+	61	0
+	+	69	0
+	+	60	53
+
+> ~/.dircolors
+	"	1	0
+
+> ~/mycols.sh
+	"	2	15
+	^	2	16
+	.	2	15
+	+	3	15
+	+	2	15
+
+> ~/myCols.sh
+	"	1	0
+	.	1	0
+	+	1	0
+
+> /mnt/c/Users/Jean-Luc/Downloads/colortool/schemes/Afterglow.itermcolors
+	"	1	0
+
+> /mnt/c/Users/Jean-Luc/Downloads/colortool/schemes/campbell.ini
+	"	1	0
+
+> /mnt/c/Users/Jean-Luc/Desktop/Notes/Meeting with Lavanya
+	"	1	0
+
+> /etc/profile
+	"	1	0
+
+> /usr/bin/dircolors
+	"	1	0
+
+> ~/.bash
+	"	1	0
+
+> ~/color-theme-molokai/molokai.sh
+	"	1	0
+
+> ~/color-theme-molokai/README.md
+	"	1	0
 
 > ~/.bash_history
 	"	2000	0
@@ -1414,58 +1434,3 @@ $
 
 > ~/msobolik.github.io/assets/style.scss
 	"	1	0
-
-> /tmp/crontab.m5zNhC/crontab
-	"	1	4
-	.	1	4
-	+	1	4
-
-> ~/.config/cava/config
-	"	105	0
-	^	105	1
-	.	105	0
-	+	73	16
-	+	100	19
-	+	105	13
-	+	51	0
-	+	52	0
-	+	73	0
-	+	99	0
-	+	100	0
-	+	105	0
-	+	99	0
-	+	100	0
-	+	105	0
-
-> ~/Rise/cava/configure.ac
-	"	1	0
-
-> ~/Rise/cava/configure
-	"	1	0
-
-> ~/Rise/cava/config.sub
-	"	1	0
-
-> ~/Rise/cava/config.status
-	"	1	0
-
-> ~/Rise/cava/config.log
-	"	803	0
-
-> ~/Rise/cava/config.h
-	"	1	0
-
-> ~/Rise/cava/config.guess
-	"	1441	0
-
-> ~/Rise/cava/config.c
-	"	307	0
-
-> ~/Rise/cava/README.md
-	"	23	0
-
-> /tmp/crontab.xhn3RP/crontab
-	"	1	1
-	^	1	2
-	.	1	1
-	+	1	1
