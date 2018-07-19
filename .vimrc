@@ -1,5 +1,3 @@
-execute pathogen#infect()
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -20,9 +18,6 @@ Plugin 'tpope/vim-surround'
 call vundle#end()
 "set t_Co=256
 syntax on
-"colorscheme Monokai-Refined
-"filetype plugin indent on
-
 set nowrap
 set ignorecase   " ignores case when searching
 set smartcase    " only sometimes
@@ -41,9 +36,35 @@ au FocusGained * :set rnu
 au InsertEnter * :set nu
 au InsertLeave * :set rnu
 
+let g:syntastic_python_checkers = ['python', 'flake8']
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11' 
 set clipboard=unnamed "allows copying between vim buffers
 
 set nobackup
 set noundofile
+
+" Disable Arrow keys in Escape mode
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Disable Arrow keys in Insert mode
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" flash the line that contains the cursor
+map ; :set cursorline<CR>:set cursorcolumn<CR>:sleep 150m<CR>:set nocursorline<CR>:set nocursorcolumn<CR>
+
+" flash the cursor position after every search
+map n n;
+map N N;
+map # #;
+map * *;
+
+" use bright yellow for the cursor location
+hi CursorLine ctermbg=Cyan 
+hi CursorColumn ctermbg=Cyan 
