@@ -21,8 +21,7 @@ syntax on
 set nowrap
 set ignorecase   " ignores case when searching
 set smartcase    " only sometimes
-:set viminfo?
-:set viminfo='100,<1000,s100,h
+set viminfo='100,<1000,s100,h
 
 set smartindent  " smart indent...
 set tabstop=4    " tabs are 4
