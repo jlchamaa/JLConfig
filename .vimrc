@@ -39,7 +39,7 @@ au InsertLeave * :set rnu
 
 let g:syntastic_python_checkers = ['python', 'flake8']
 let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11' 
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
 set clipboard=unnamed "allows copying between vim buffers
 
 set nobackup
@@ -67,5 +67,8 @@ map # #;
 map * *;
 
 " use bright yellow for the cursor location
-hi CursorLine ctermbg=Cyan 
-hi CursorColumn ctermbg=Cyan 
+hi CursorLine ctermbg=Cyan
+hi CursorColumn ctermbg=Cyan
+
+" F5 remove trailing whitespace from file
+:nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
