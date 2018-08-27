@@ -91,6 +91,7 @@ fi
 #alias ll='ls -l'
 alias la='ls -A'
 alias gld='git log --decorate --oneline --graph'
+alias flake8='flake8 --ignore=E501'
 #alias l='ls -CF'
 
 # Alias definitions.

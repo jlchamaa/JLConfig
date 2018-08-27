@@ -38,6 +38,7 @@ au InsertEnter * :set nu
 au InsertLeave * :set rnu
 
 let g:syntastic_python_checkers = ['python', 'flake8']
+let g:syntastic_python_flake8_post_args='--ignore=E501'
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 set clipboard=unnamed "allows copying between vim buffers
