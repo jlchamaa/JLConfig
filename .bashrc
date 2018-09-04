@@ -92,6 +92,7 @@ fi
 alias la='ls -A'
 alias gld='git log --decorate --oneline --graph'
 alias flake8='flake8 --ignore=E501'
+alias tmux='tmux -2'
 #alias l='ls -CF'
 
 # Alias definitions.
