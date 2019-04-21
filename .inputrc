@@ -1,6 +1,9 @@
+$include /etc/inputrc
 "\e[A": history-search-backward
 "\e[B": history-search-forward
 "\e[C": forward-char
 "\e[D": backward-char
-set show-all-if-ambiguous on
-set completion-ignore-case on
+set colored-stats On
+set show-all-if-ambiguous On
+set completion-ignore-case On
+set revert-all-at-newline On

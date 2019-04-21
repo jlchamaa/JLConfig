@@ -3,25 +3,28 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.fzf
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'scrooloose/syntastic'
-Plugin 'jiangmiao/auto-pairs'
+"Plugin 'jiangmiao/auto-pairs'
+Plugin 'junegunn/fzf.vim'
 Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'crusoexia/vim-monokai'
+"Plugin 'crusoexia/vim-monokai'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-surround'
 "Plugin 'davidhalter/jedi-vim'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'airblade/vim-gitgutter'
 call vundle#end()
 "set t_Co=256
 syntax on
 set nowrap
 set ignorecase   " ignores case when searching
 set smartcase    " only sometimes
-set viminfo='100,<1000,s100,h
+set viminfo='500,<1000,s100,h
 
 set smartindent  " smart indent...
 set tabstop=4    " tabs are 4
@@ -45,6 +48,7 @@ set clipboard=unnamed "allows copying between vim buffers
 
 set nobackup
 set noundofile
+set cursorline
 
 " Disable Arrow keys in Escape mode
 map <up> <nop>
@@ -59,17 +63,45 @@ imap <left> <nop>
 imap <right> <nop>
 
 " flash the line that contains the cursor
-map ; :set cursorline<CR>:set cursorcolumn<CR>:sleep 150m<CR>:set nocursorline<CR>:set nocursorcolumn<CR>
+noremap ; :hi CursorLine ctermbg=cyan<CR>:set cursorcolumn<CR>:sleep 100m<CR>:hi CursorLine ctermbg=239<CR>:set nocursorcolumn<CR>
 
 " flash the cursor position after every search
 map n n;
 map N N;
-map # #;
-map * *;
+noremap # #;
+noremap * *;
 
 " use bright yellow for the cursor location
-hi CursorLine ctermbg=Cyan
+hi CursorLine ctermbg=236
 hi CursorColumn ctermbg=Cyan
+hi MatchParen ctermbg=blue guibg=lightblue
 
 " F5 remove trailing whitespace from file
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+" FZF Keybinding
+noremap <C-a> :FZF ~/driving<CR>
+noremap <C-p> :History<CR>
+let loaded_matchparen = 1
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]

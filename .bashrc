@@ -14,6 +14,7 @@ HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+shopt -s globstar
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=100000
@@ -90,9 +91,11 @@ fi
 # some more ls aliases
 #alias ll='ls -l'
 alias la='ls -A'
-alias gld='git log --decorate --oneline --graph'
-alias flake8='flake8 --ignore=E501'
+alias gld='git log --color --decorate --oneline --graph'
+alias flake9='flake8 --ignore=E501'
 alias tmux='tmux -2'
+alias o='vim $(fzf)'
+alias pc="/usr/bin/env python3 -m pytest --cov-report=html:$(pwd)/html_cov --cov=."
 #alias l='ls -CF'
 
 # Alias definitions.
@@ -114,3 +117,5 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
