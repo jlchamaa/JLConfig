@@ -58,7 +58,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \$\[\033[00m\] '
+    PS1='\[\033[01;32m\]jlc@\h\[\033[00m\]:\[\033[01;34m\]\w \$\[\033[00m\] '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -94,9 +94,6 @@ alias la='ls -A'
 alias gld='git log --color --decorate --oneline --graph'
 alias flake9='flake8 --ignore=E501'
 alias tmux='tmux -2'
-alias o='vim $(fzf)'
-alias pc="/usr/bin/env python3 -m pytest --cov-report=html:$(pwd)/html_cov --cov=."
-#alias l='ls -CF'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -117,5 +114,9 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+
+# ZOOX SPECIFIC
+source ~/.work_rc
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

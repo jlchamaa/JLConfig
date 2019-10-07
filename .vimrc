@@ -10,6 +10,8 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'scrooloose/syntastic'
 "Plugin 'jiangmiao/auto-pairs'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'junegunn/fzf.vim'
 Plugin 'kien/rainbow_parentheses.vim'
 "Plugin 'crusoexia/vim-monokai'
@@ -18,8 +20,11 @@ Plugin 'tpope/vim-surround'
 "Plugin 'davidhalter/jedi-vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'posva/vim-vue'
 call vundle#end()
 "set t_Co=256
+let g:airline_theme='wombat'
+
 syntax on
 set nowrap
 set ignorecase   " ignores case when searching
@@ -44,7 +49,7 @@ let g:syntastic_python_checkers = ['python', 'flake8']
 let g:syntastic_python_flake8_post_args='--ignore=E501'
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
-set clipboard=unnamed "allows copying between vim buffers
+set clipboard=unnamedplus "allows copying between vim buffers
 
 set nobackup
 set noundofile
@@ -63,13 +68,16 @@ imap <left> <nop>
 imap <right> <nop>
 
 " flash the line that contains the cursor
-noremap ; :hi CursorLine ctermbg=cyan<CR>:set cursorcolumn<CR>:sleep 100m<CR>:hi CursorLine ctermbg=239<CR>:set nocursorcolumn<CR>
+noremap <silent> ; :hi CursorLine ctermbg=cyan<CR>:set cursorcolumn<CR>:sleep 100m<CR>:hi CursorLine ctermbg=239<CR>:set nocursorcolumn<CR>
 
 " flash the cursor position after every search
 map n n;
 map N N;
 noremap # #;
 noremap * *;
+
+" obsolete escape key
+imap jj <Esc>
 
 " use bright yellow for the cursor location
 hi CursorLine ctermbg=236
@@ -79,8 +87,11 @@ hi MatchParen ctermbg=blue guibg=lightblue
 " F5 remove trailing whitespace from file
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
+" Alt-P to paste smartly
+nnoremap <silent> <m-P> : <C-S-v>
+
 " FZF Keybinding
-noremap <C-a> :FZF ~/driving<CR>
+noremap <C-a> :GFiles ~/driving<CR>
 noremap <C-p> :History<CR>
 let loaded_matchparen = 1
 au VimEnter * RainbowParenthesesToggle
