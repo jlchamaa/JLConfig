@@ -1,0 +1,25 @@
+function get_current_repo(){
+    pwd | grep -oP "^/home/j[\w\d]*/d[\w\d]*"
+}
+function cdc(){
+    cd $(get_current_repo)
+}
+
+function gr(){
+    grep -Ir "$1" *
+}
+
+function pc(){
+   /usr/bin/env python3 -m pytest --cov-report=html:$(pwd)/html_cov --cov=.
+}
+export PATH="$HOME/.tfenv/bin:$PATH"
+alias la='ls -A'
+alias gld='git log --color --decorate --oneline --graph'
+alias gldh='git log --color --decorate --oneline --graph | head -n 20'
+alias flake9='flake8 --ignore=E501'
+alias tmux='tmux -2'
+
+export WORKON_HOME=$HOME/workon_home
+export PROJECT_HOME=$HOME/Devel
+VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh

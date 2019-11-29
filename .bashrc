@@ -90,10 +90,6 @@ fi
 
 # some more ls aliases
 #alias ll='ls -l'
-alias la='ls -A'
-alias gld='git log --color --decorate --oneline --graph'
-alias flake9='flake8 --ignore=E501'
-alias tmux='tmux -2'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -115,6 +111,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# for all shells
+source ~/.shellrc
 
 # ZOOX SPECIFIC
 source ~/.work_rc

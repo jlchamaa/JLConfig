@@ -19,14 +19,15 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-surround'
 "Plugin 'davidhalter/jedi-vim'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
 Plugin 'posva/vim-vue'
 call vundle#end()
 "set t_Co=256
 let g:airline_theme='wombat'
 
 syntax on
-set nowrap
+set wrap
 set ignorecase   " ignores case when searching
 set smartcase    " only sometimes
 set viminfo='500,<1000,s100,h
@@ -70,6 +71,7 @@ imap <right> <nop>
 " flash the line that contains the cursor
 noremap <silent> ; :hi CursorLine ctermbg=cyan<CR>:set cursorcolumn<CR>:sleep 100m<CR>:hi CursorLine ctermbg=239<CR>:set nocursorcolumn<CR>
 
+set hlsearch
 " flash the cursor position after every search
 map n n;
 map N N;
@@ -91,8 +93,8 @@ hi MatchParen ctermbg=blue guibg=lightblue
 nnoremap <silent> <m-P> : <C-S-v>
 
 " FZF Keybinding
-noremap <C-a> :GFiles ~/driving<CR>
-noremap <C-p> :History<CR>
+noremap <C-a> :GFiles $(get_current_repo)<CR>
+noremap <C-p> :Jlc<CR>
 let loaded_matchparen = 1
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
@@ -116,3 +118,23 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3'],
     \ ]
+
+function! Convert_file_to_current_repo(curr_file)
+    let cur_wd=fnamemodify(getcwd(), ":p")
+
+    if cur_wd !~ "/home/jlchamaa/d"
+        " we're not in a repo return all unmodified
+        return fnamemodify(a:curr_file, ":~")
+    endif
+
+    let currepo=fnamemodify(cur_wd, ':s?/home/jlchamaa/d\w*\zs.*??:p')
+    let currfile=fnamemodify(a:curr_file, ':p')
+    return fnamemodify(currfile, ':s?/home/jlchamaa/d\w*/\ze?\=l:currepo?:~')
+endfunction
+
+command! -bang Jlc call fzf#run({'source':
+\ fzf#vim#_uniq(filter(map(
+\      copy(v:oldfiles),
+\      "Convert_file_to_current_repo(v:val)"
+\ ), "filereadable(fnamemodify(v:val, ':p'))")),
+\ 'sink': 'e', 'down': '30%'})
