@@ -9,17 +9,14 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'scrooloose/syntastic'
-"Plugin 'jiangmiao/auto-pairs'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'junegunn/fzf.vim'
 Plugin 'kien/rainbow_parentheses.vim'
-"Plugin 'crusoexia/vim-monokai'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-surround'
-"Plugin 'davidhalter/jedi-vim'
 Plugin 'Valloric/YouCompleteMe'
-"Plugin 'airblade/vim-gitgutter'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-fugitive'
 Plugin 'posva/vim-vue'
 call vundle#end()
@@ -39,6 +36,15 @@ set expandtab    " converts tabs to 4 spaces
 
 set nu
 set rnu
+
+set equalalways
+set splitbelow
+set splitright
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 au FocusLost * :set nu
 au FocusGained * :set rnu
@@ -132,9 +138,13 @@ function! Convert_file_to_current_repo(curr_file)
     return fnamemodify(currfile, ':s?/home/jlchamaa/d\w*/\ze?\=l:currepo?:~')
 endfunction
 
-command! -bang Jlc call fzf#run({'source':
-\ fzf#vim#_uniq(filter(map(
-\      copy(v:oldfiles),
-\      "Convert_file_to_current_repo(v:val)"
-\ ), "filereadable(fnamemodify(v:val, ':p'))")),
-\ 'sink': 'e', 'down': '30%'})
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+command! -bang Jlc call fzf#run({
+\  'source':fzf#vim#_uniq(filter(map(copy(v:oldfiles),"Convert_file_to_current_repo(v:val)"),"filereadable(fnamemodify(v:val, ':p'))")),
+\  'sink' : 'e',
+\  'down': '30%',
+\  'options': ['--reverse', '--expect=Ctrl-y']})

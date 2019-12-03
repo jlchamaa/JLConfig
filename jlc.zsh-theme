@@ -18,5 +18,5 @@ function prompt_char() {
   echo "%{$fg[cyan]%}◯%{$reset_color%}"
 }
 
-PROMPT='%{$fg[blue]%}jlc@desk %{$fg[cyan]%}%~ ➤ '
+PROMPT='%{$fg[green]%}jlc@lap %{$fg[cyan]%}%~ ➤ '
 RPROMPT='${return_status}[%T]%{$reset_color%} %{$reset_color%}$(git_prompt_short_sha)$(jlc_git_prompt_info)%{$reset_color%}'

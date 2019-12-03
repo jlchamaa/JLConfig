@@ -21,5 +21,5 @@ alias tmux='tmux -2'
 
 export WORKON_HOME=$HOME/workon_home
 export PROJECT_HOME=$HOME/Devel
-VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+VIRTUALENVWRAPPER_PYTHON=$(which python3)
 source /usr/local/bin/virtualenvwrapper.sh
