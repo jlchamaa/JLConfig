@@ -20,55 +20,40 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-fugitive'
 Plugin 'posva/vim-vue'
 call vundle#end()
-"set t_Co=256
-let g:airline_theme='wombat'
 
+
+" General VIM
+set mouse=n
+"set t_Co=256
 syntax on
 set wrap
 set ignorecase   " ignores case when searching
 set smartcase    " only sometimes
 set viminfo='500,<1000,s100,h
-
 set smartindent  " smart indent...
 set tabstop=4    " tabs are 4
 set shiftwidth=4 " >> and << shift 4 spaces
 set expandtab    " converts tabs to 4 spaces
-
 set nu
 set rnu
-
-set equalalways
-set splitbelow
-set splitright
-
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
 au FocusLost * :set nu
 au FocusGained * :set rnu
-
 au InsertEnter * :set nu
 au InsertLeave * :set rnu
-
-let g:syntastic_python_checkers = ['python', 'flake8']
-let g:syntastic_python_flake8_post_args='--ignore=E501'
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
-set clipboard=unnamedplus "allows copying between vim buffers
-
+set splitbelow
+set splitright
 set nobackup
 set noundofile
 set cursorline
+set clipboard=unnamedplus "allows copying between vim buffers
+set hlsearch
+imap jj <Esc>
 
-" Disable Arrow keys in Escape mode
+" Disable Arrow keys 
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
-
-" Disable Arrow keys in Insert mode
 imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
@@ -76,18 +61,10 @@ imap <right> <nop>
 
 " flash the line that contains the cursor
 noremap <silent> ; :hi CursorLine ctermbg=cyan<CR>:set cursorcolumn<CR>:sleep 100m<CR>:hi CursorLine ctermbg=239<CR>:set nocursorcolumn<CR>
-
-set hlsearch
-" flash the cursor position after every search
 map n n;
 map N N;
 noremap # #;
 noremap * *;
-
-" obsolete escape key
-imap jj <Esc>
-
-" use bright yellow for the cursor location
 hi CursorLine ctermbg=236
 hi CursorColumn ctermbg=Cyan
 hi MatchParen ctermbg=blue guibg=lightblue
@@ -95,12 +72,29 @@ hi MatchParen ctermbg=blue guibg=lightblue
 " F5 remove trailing whitespace from file
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
-" Alt-P to paste smartly
-nnoremap <silent> <m-P> : <C-S-v>
 
-" FZF Keybinding
-noremap <C-a> :GFiles $(get_current_repo)<CR>
-noremap <C-p> :Jlc<CR>
+" ##### PLUGIN OPTIONS #####
+
+" airline
+let g:airline_theme='wombat'
+let g:airline#extensions#branch#displayed_head_limit = 15
+let g:airline#extensions#default#section_truncate_width = {
+\ 'b': 100,
+\ 'x': 150,
+\ 'y': 250,
+\ 'z': 45,
+\ 'warning': 80,
+\ 'error': 80,
+\ }
+
+
+" syntastic
+let g:syntastic_python_checkers = ['python', 'flake8']
+let g:syntastic_python_flake8_post_args='--ignore=E501'
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
+
+" rainbow_parens
 let loaded_matchparen = 1
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
@@ -125,6 +119,11 @@ let g:rbpt_colorpairs = [
     \ ['red',         'firebrick3'],
     \ ]
 
+
+" FZF Keybinding
+noremap <C-a> :GFiles $(get_current_repo)<CR>
+noremap <C-q> :Buffers<CR>
+noremap <C-p> :Jlc<CR>
 function! Convert_file_to_current_repo(curr_file)
     let cur_wd=fnamemodify(getcwd(), ":p")
 
@@ -144,7 +143,20 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 
 command! -bang Jlc call fzf#run({
-\  'source':fzf#vim#_uniq(filter(map(copy(v:oldfiles),"Convert_file_to_current_repo(v:val)"),"filereadable(fnamemodify(v:val, ':p'))")),
+\  'source':fzf#vim#_uniq(
+\filter(map(copy(v:oldfiles),"Convert_file_to_current_repo(v:val)"),"filereadable(fnamemodify(v:val, ':p'))")),
 \  'sink' : 'e',
-\  'down': '30%',
-\  'options': ['--reverse', '--expect=Ctrl-y']})
+\  'down' : '30%',
+\  'options': '+m -x +s'})
+
+
+" tmux-vim-navigator
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>

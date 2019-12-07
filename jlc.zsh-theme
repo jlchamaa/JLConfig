@@ -18,5 +18,15 @@ function prompt_char() {
   echo "%{$fg[cyan]%}◯%{$reset_color%}"
 }
 
-PROMPT='%{$fg[green]%}jlc@lap %{$fg[cyan]%}%~ ➤ '
+function which_machine() {
+    unameOut="$(uname -a)"
+    case "$unameOut" in
+        Linux?????-desktop* )     echo "work";;
+        Darwin?????-lapto*)    echo "lap";;
+        Linux?Fuzzy)    echo "home";;
+    esac
+
+}
+
+PROMPT='%{$fg[green]%}jlc@$(which_machine) %{$fg[cyan]%}%~ ➤ %{$reset_color%}'
 RPROMPT='${return_status}[%T]%{$reset_color%} %{$reset_color%}$(git_prompt_short_sha)$(jlc_git_prompt_info)%{$reset_color%}'

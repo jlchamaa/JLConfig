@@ -5,7 +5,11 @@ source ~/.work_rc
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/jlchamaa/.oh-my-zsh"
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     export ZSH="/home/jlchamaa/.oh-my-zsh";;
+    Darwin*)    export ZSH="/Users/jlchamaa/.oh-my-zsh";;
+esac
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
