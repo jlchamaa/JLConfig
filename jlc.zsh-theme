@@ -1,4 +1,5 @@
 # smt.zsh-theme, based on dogenpunk by Matthew Nelson.
+local return_status="%(?.%{$fg[green]%}✓.%{$fg[red]%} %? ✗)%{$reset_color%} "
 function jlc_git_prompt_info() {
   local ref
   if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" != "1" ]]; then
@@ -23,10 +24,9 @@ function which_machine() {
     case "$unameOut" in
         Linux?????-desktop* )     echo "work";;
         Darwin?????-lapto*)    echo "lap";;
-        Linux?Fuzzy)    echo "home";;
+        Linux?Fuzzy*)    echo "home";;
     esac
 
 }
-
-PROMPT='%{$fg[green]%}jlc@$(which_machine) %{$fg[cyan]%}%~ ➤ %{$reset_color%}'
-RPROMPT='${return_status}[%T]%{$reset_color%} %{$reset_color%}$(git_prompt_short_sha)$(jlc_git_prompt_info)%{$reset_color%}'
+PROMPT='%{%B$fg[green]%}jlc@$(which_machine)%b %{$fg[cyan]%}%~  ➤ %{$reset_color%}'
+RPROMPT='${return_status}%{$fg[magenta]%}[%T]%{$reset_color%} %{$reset_color%}$(git_prompt_short_sha)$(jlc_git_prompt_info)%{$reset_color%}'

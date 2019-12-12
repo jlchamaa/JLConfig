@@ -13,7 +13,8 @@ function pc(){
    /usr/bin/env python3 -m pytest --cov-report=html:$(pwd)/html_cov --cov=.
 }
 export PATH="$HOME/.tfenv/bin:$PATH"
-alias la='ls -A'
+
+alias la='ls -Alh'
 alias gld='git log --color --decorate --oneline --graph'
 alias gldh='git log --color --decorate --oneline --graph | head -n 20'
 alias flake9='flake8 --ignore=E501'

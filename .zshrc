@@ -5,10 +5,11 @@ source ~/.work_rc
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-unameOut="$(uname -s)"
-case "${unameOut}" in
-    Linux*)     export ZSH="/home/jlchamaa/.oh-my-zsh";;
-    Darwin*)    export ZSH="/Users/jlchamaa/.oh-my-zsh";;
+unameOut="$(uname -a)"
+case "$unameOut" in
+    Linux?????-desktop* )     export ZSH="/home/jlchamaa/.oh-my-zsh";;
+    Darwin?????-lapto*)    export ZSH="/Users/jlchamaa/.oh-my-zsh";;
+    Linux?Fuzzy)    export ZSH="/mnt/c/Users/jlcha/WSL/.oh-my-zsh"; export ZSH_DISABLE_COMPFIX=true;;
 esac
 
 # Set name of the theme to load --- if set to "random", it will
@@ -16,7 +17,6 @@ esac
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="jlc"
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -78,6 +78,7 @@ ZSH_THEME="jlc"
 plugins=(
     git
     thefuck
+    zsh-dircolors-solarized
 )
 eval $(thefuck --alias)
 source $ZSH/oh-my-zsh.sh
