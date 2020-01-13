@@ -143,8 +143,9 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 
 command! -bang Jlc call fzf#run({
-\  'source':fzf#vim#_uniq(
-\filter(map(copy(v:oldfiles),"Convert_file_to_current_repo(v:val)"),"filereadable(fnamemodify(v:val, ':p'))")),
+\  'source': fzf#vim#_uniq(extend(
+\ map(filter(range(1, bufnr("$")), "buflisted(v:val)"), "Convert_file_to_current_repo(bufname(v:val))"),
+\ filter(map(copy(v:oldfiles),"Convert_file_to_current_repo(v:val)"),"filereadable(fnamemodify(v:val, ':p'))"))),
 \  'sink' : 'e',
 \  'down' : '30%',
 \  'options': '+m -x +s'})
