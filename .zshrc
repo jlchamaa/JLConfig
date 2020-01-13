@@ -78,7 +78,6 @@ ZSH_THEME="jlc"
 plugins=(
     git
     thefuck
-    zsh-dircolors-solarized
 )
 eval $(thefuck --alias)
 source $ZSH/oh-my-zsh.sh

@@ -28,5 +28,5 @@ function which_machine() {
     esac
 
 }
-PROMPT='%{%B$fg[green]%}jlc@$(which_machine)%b %{$fg[cyan]%}%~  ➤ %{$reset_color%}'
+PROMPT='%{%B$fg[green]%}jlc@$(which_machine)%b %{$fg[cyan]%}%~ ➤ %{$reset_color%}'
 RPROMPT='${return_status}%{$fg[magenta]%}[%T]%{$reset_color%} %{$reset_color%}$(git_prompt_short_sha)$(jlc_git_prompt_info)%{$reset_color%}'

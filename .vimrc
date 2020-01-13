@@ -6,19 +6,20 @@ set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=~/.fzf
 call vundle#begin()
 " let Vundle manage Vundle, required
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-sensible'
-Plugin 'scrooloose/syntastic'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'junegunn/fzf.vim'
 Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'posva/vim-vue'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'tpope/vim-fugitive'
-Plugin 'posva/vim-vue'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
 
 
@@ -87,6 +88,9 @@ let g:airline#extensions#default#section_truncate_width = {
 \ 'error': 80,
 \ }
 
+" NERDTree
+nnoremap <silent> <F6> :NERDTreeToggle<CR>
+command! -bang Ntf :NERDTreeFind
 
 " syntastic
 let g:syntastic_python_checkers = ['python', 'flake8']
