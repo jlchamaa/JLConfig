@@ -17,7 +17,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
@@ -25,6 +25,7 @@ call vundle#end()
 
 " General VIM
 set mouse=n
+set ttymouse=sgr
 "set t_Co=256
 syntax on
 set wrap
@@ -48,7 +49,6 @@ set noundofile
 set cursorline
 set clipboard=unnamedplus "allows copying between vim buffers
 set hlsearch
-imap jj <Esc>
 
 " Disable Arrow keys 
 map <up> <nop>
@@ -61,17 +61,24 @@ imap <left> <nop>
 imap <right> <nop>
 
 " flash the line that contains the cursor
-noremap <silent> ; :hi CursorLine ctermbg=cyan<CR>:set cursorcolumn<CR>:sleep 100m<CR>:hi CursorLine ctermbg=239<CR>:set nocursorcolumn<CR>
-map n n;
-map N N;
-noremap # #;
-noremap * *;
+noremap <silent> , :hi CursorLine ctermbg=cyan<CR>:set cursorcolumn<CR>:sleep 100m<CR>:hi CursorLine ctermbg=239<CR>:set nocursorcolumn<CR>
+map n n,
+map N N,
+noremap # #,
+noremap * *,
 hi CursorLine ctermbg=236
 hi CursorColumn ctermbg=Cyan
 hi MatchParen ctermbg=blue guibg=lightblue
 
 " F5 remove trailing whitespace from file
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+" JSON Folding
+function! FoldJson()
+    set filetype=json
+    syntax on
+    set foldmethod=syntax
+endfunction
 
 
 " ##### PLUGIN OPTIONS #####
@@ -93,10 +100,12 @@ nnoremap <silent> <F6> :NERDTreeToggle<CR>
 command! -bang Ntf :NERDTreeFind
 
 " syntastic
-let g:syntastic_python_checkers = ['python', 'flake8']
-let g:syntastic_python_flake8_post_args='--ignore=E501'
+let g:syntastic_python_python_exec = 'python3.6'
+let g:syntastic_python_checkers = ['python3.6', 'flake8']
+let g:syntastic_python_flake8_post_args='--ignore=E501,W503'
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
+let g:syntastic_aggregate_errors = 1
 
 " rainbow_parens
 let loaded_matchparen = 1
@@ -145,11 +154,11 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
-
+" ""
 command! -bang Jlc call fzf#run({
 \  'source': fzf#vim#_uniq(extend(
 \ map(filter(range(1, bufnr("$")), "buflisted(v:val)"), "Convert_file_to_current_repo(bufname(v:val))"),
-\ filter(map(copy(v:oldfiles),"Convert_file_to_current_repo(v:val)"),"filereadable(fnamemodify(v:val, ':p'))"))),
+\ filter(map(copy(v:oldfiles),"Convert_file_to_current_repo(v:val)"), "and(filereadable(fnamemodify(v:val, ':p')), stridx(v:val, 'bazel-out') < 0)"))),
 \  'sink' : 'e',
 \  'down' : '30%',
 \  'options': '+m -x +s'})
@@ -165,3 +174,8 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
+
+" YCM
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_auto_hover=''
+"let g:ycm_disable_signature_help = 1

@@ -1,3 +1,4 @@
+# zmodload zsh/zprof # top of your .zshrc file
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 source ~/.shellrc
 source ~/.work_rc
@@ -76,7 +77,6 @@ ZSH_THEME="jlc"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
     thefuck
 )
 eval $(thefuck --alias)
@@ -109,3 +109,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# zprof
