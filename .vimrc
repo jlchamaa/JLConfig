@@ -2,8 +2,10 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
+set path=,,.,**,/usr/include,/usr/local/include
 set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=~/.fzf
+:set tags=./tags;
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'christoomey/vim-tmux-navigator'
@@ -49,6 +51,7 @@ set noundofile
 set cursorline
 set clipboard=unnamedplus "allows copying between vim buffers
 set hlsearch
+set pastetoggle=<F2>
 
 " Disable Arrow keys 
 map <up> <nop>
@@ -97,15 +100,23 @@ let g:airline#extensions#default#section_truncate_width = {
 
 " NERDTree
 nnoremap <silent> <F6> :NERDTreeToggle<CR>
-command! -bang Ntf :NERDTreeFind
+nnoremap <silent> <F7> :NERDTreeFind<CR>
 
 " syntastic
+let g:syntastic_check_on_open=1 " Check for syntax errors on file open.
+let g:syntastic_echo_current_error=1 " Echo errors to the command window.
+let g:syntastic_enable_signs=1 " Mark lines with errors and warnings.
+let g:syntastic_enable_balloons=0 " Do not open error balloons over erroneous lines.
+let g:syntastic_cpp_check_header=1 " YCM will provide context for C++ files.
+let g:syntastic_c_check_header=1 " Same for C files.
+
 let g:syntastic_python_python_exec = 'python3.6'
 let g:syntastic_python_checkers = ['python3.6', 'flake8']
 let g:syntastic_python_flake8_post_args='--ignore=E501,W503'
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
-let g:syntastic_aggregate_errors = 1
+
+" let g:syntastic_cpp_compiler= 'clang'
+" let g:syntastic_cpp_checkers = ['clang-check']
+" let g:syntastic_aggregate_errors = 1
 
 " rainbow_parens
 let loaded_matchparen = 1
@@ -177,5 +188,11 @@ nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
 
 " YCM
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_show_diagnostics_ui = 0
 let g:ycm_auto_hover=''
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_semantic_triggers = {
+    \   'python': [ 're!\w{2}', 're!(import\s+|from\s+(\w+\s+(import\s+(\w+,\s+)*)?)?)' ]
+    \ }
 "let g:ycm_disable_signature_help = 1
