@@ -29,6 +29,14 @@ ln -s ~/JLConfig/.tmux.conf ~/.tmux.conf
 rm ~/.vimrc
 ln -s ~/JLConfig/.vimrc ~/.vimrc
 
+# cpp.vim
+rm ~/.vim/ftplugin/cpp.vim
+ln -s ~/JLConfig/cpp.vim ~/.vim/ftplugin/cpp.vim
+
+# python.vim
+rm ~/.vim/ftplugin/python.vim
+ln -s ~/JLConfig/python.vim ~/.vim/ftplugin/python.vim
+
 # zshrc
 rm ~/.zshrc
 ln -s ~/JLConfig/.zshrc ~/.zshrc

@@ -32,6 +32,7 @@ eval `cat $SSH_AGENT_ENV_PATH` >> /dev/null
 alias la='ls -Alh'
 alias gld='git log --color --decorate --oneline --graph'
 alias gldh='git log --color --decorate --oneline --graph | head -n 20'
+alias gdh='git diff HEAD'
 alias gcb='git checkout $(git branch | fzf)'
 alias gwl='git worktree list'
 alias flake9='flake8 --ignore=E501'
