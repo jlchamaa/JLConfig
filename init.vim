@@ -1,43 +1,33 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
 " set the runtime path to include Vundle and initialize
-set path=,,.,**,/usr/include,/usr/local/include
-set rtp+=~/.vim/bundle/Vundle.vim
+" set path=,,.,**,/usr/include,/usr/local/include
 set rtp+=~/.fzf
 :set tags=./tags;
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'gmarik/Vundle.vim'
-Plugin 'junegunn/fzf.vim'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'posva/vim-vue'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-call vundle#end()
 
-let g:ycm_log_level = 'debug'
-let g:ycm_server_log_level = 'debug'
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_collect_identifiers_from_tags_files=1
-let g:ycm_error_symbol = '>>'
-let g:ycm_warning_symbol = '!'
-let g:ycm_server_python_interpreter='/usr/bin/python3.6'
+call plug#begin()
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'junegunn/fzf.vim'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'posva/vim-vue'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-syntastic/syntastic'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+call plug#end()
+
 nnoremap <leader>g  :YcmCompleter GoTo<CR>
 nnoremap <leader>F  :YcmCompleter FixIt<CR>
 
+" General NeoVim
+unmap Y
+set background=light
+colorscheme ultraviolent
+
 " General VIM
-set mouse=n
-set ttymouse=sgr
-"set t_Co=256
 syntax on
 set wrap
 set smartindent  " smart indent...
@@ -111,13 +101,6 @@ nnoremap <silent> <F6> :NERDTreeToggle<CR>
 nnoremap <silent> <F7> :NERDTreeFind<CR>
 
 " syntastic
-" let g:syntastic_check_on_open=1 " Check for syntax errors on file open.
-" let g:syntastic_echo_current_error=1 " Echo errors to the command window.
-" let g:syntastic_enable_signs=1 " Mark lines with errors and warnings.
-" let g:syntastic_enable_balloons=0 " Do not open error balloons over erroneous lines.
-" let g:syntastic_cpp_check_header=1 " YCM will provide context for C++ files.
-" let g:syntastic_c_check_header=1 " Same for C files.
-
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -179,7 +162,6 @@ function! Convert_file_to_current_repo(curr_file)
     return fnamemodify(currfile, ':s?/home/jlchamaa/d\w*/\ze?\=l:currepo?:~')
 endfunction
 
-let jlc_filter_rule =""
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
@@ -204,16 +186,14 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
-
-" YCM
-" Let clangd fully control code completion
-let g:ycm_clangd_uses_ycmd_caching = 0
-" Use installed clangd, not YCM-bundled clangd which doesn't get updates.
-let g:ycm_clangd_binary_path = exepath("clangd")
-
-" let g:ycm_autoclose_preview_window_after_completion = 1
-" let g:ycm_show_diagnostics_ui = 0
-" let g:ycm_auto_hover=''
-" let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
-" let g:ycm_collect_identifiers_from_tags_files=1
-"let g:ycm_disable_signature_help = 1
+let g:ycm_log_level='debug'
+let g:ycm_use_clangd=1
+let g:ycm_clangd_args = ['-log=verbose', '-pretty']
+let g:ycm_clangd_binary_path = '/usr/local/bin/clangd'
+let g:ycm_log_level = 'debug'
+let g:ycm_server_log_level = 'debug'
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_error_symbol = '>>'
+let g:ycm_warning_symbol = '!'
+let g:ycm_server_python_interpreter='/usr/bin/python3.6'

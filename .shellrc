@@ -37,6 +37,7 @@ alias gcb='git checkout $(git branch | fzf)'
 alias gwl='git worktree list'
 alias flake9='flake8 --ignore=E501'
 alias tmux='tmux -2u'
+alias 256='sha256sum'
 
 export WORKON_HOME=$HOME/workon_home
 export PROJECT_HOME=$HOME/Devel
