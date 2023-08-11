@@ -110,8 +110,8 @@ let g:syntastic_cpp_checkers = []
 let g:syntastic_cpp_clang_tidy_exec = "/usr/bin/clang-tidy-4.0"
 let g:syntastic_auto_loc_list = 0
 
-let g:syntastic_python_python_exec = 'python3.6'
-let g:syntastic_python_checkers = ['python3.6', 'flake8', 'mypy']
+let g:syntastic_python_python_exec = 'python3.11'
+let g:syntastic_python_checkers = ['python3.11', 'flake8', 'mypy']
 let g:syntastic_python_flake8_post_args='--ignore=E501,W503'
 let g:syntastic_python_mypy_post_args='--follow-imports silent'
 let g:syntastic_cpp_compiler= 'clang'
@@ -162,15 +162,39 @@ function! Convert_file_to_current_repo(curr_file)
     return fnamemodify(currfile, ':s?/home/jlchamaa/d\w*/\ze?\=l:currepo?:~')
 endfunction
 
+function! Filter_useless_files(a_file)
+    if stridx(a:a_file, 'sun-tcs0') >= 0
+        return 0
+    endif
+    if stridx(a:a_file, 'bazel-out') >= 0
+        return 0
+    endif
+    if ! filereadable(fnamemodify(a:a_file, ':p'))
+        return 0
+    endif
+    return 1
+endfunction
+
+
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 " ""
 command! -bang Jlc call fzf#run({
-\  'source': fzf#vim#_uniq(extend(
-\ map(filter(range(1, bufnr("$")), "buflisted(v:val)"), "Convert_file_to_current_repo(bufname(v:val))"),
-\ filter(map(copy(v:oldfiles),"Convert_file_to_current_repo(v:val)"), "and(filereadable(fnamemodify(v:val, ':p')), and(stridx(v:val, 'bazel-out') < 0, stridx(v:val, 'sun-tcs01') < 0))"))),
+\  'source': fzf#vim#_uniq(
+\   map(
+\       filter(
+\           extend(
+\               filter(
+\                   range(1, bufnr("$")),
+\                   "buflisted(v:val)"),
+\               copy(v:oldfiles),
+\           ),
+\           "Filter_useless_files(v:val)",
+\       ),
+\       "Convert_file_to_current_repo(v:val)",
+\ )),
 \  'sink' : 'e',
 \  'down' : '30%',
 \  'options': '+m -x +s'})
@@ -189,11 +213,10 @@ nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
 let g:ycm_log_level='debug'
 let g:ycm_use_clangd=1
 let g:ycm_clangd_args = ['-log=verbose', '-pretty']
-let g:ycm_clangd_binary_path = '/usr/local/bin/clangd'
 let g:ycm_log_level = 'debug'
 let g:ycm_server_log_level = 'debug'
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_collect_identifiers_from_tags_files=1
 let g:ycm_error_symbol = '>>'
 let g:ycm_warning_symbol = '!'
-let g:ycm_server_python_interpreter='/usr/bin/python3.6'
+let g:ycm_global_ycm_extra_conf='~/ycm_extra_conf.py'

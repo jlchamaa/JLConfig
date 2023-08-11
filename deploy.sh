@@ -28,6 +28,8 @@ ln -s ~/JLConfig/.tmux.conf ~/.tmux.conf
 # vimrc
 rm ~/.vimrc
 ln -s ~/JLConfig/.vimrc ~/.vimrc
+rm ~/.config/nvim/init.vim
+ln -s ~/JLConfig/init.vim ~/.config/nvim/init.vim
 
 # cpp.vim
 rm ~/.vim/ftplugin/cpp.vim
