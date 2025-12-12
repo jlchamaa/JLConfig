@@ -14,13 +14,12 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'ycm-core/YouCompleteMe'
+" Plug 'ycm-core/YouCompleteMe'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'saghen/blink.cmp'
 call plug#end()
 
-nnoremap <leader>g  :YcmCompleter GoTo<CR>
-nnoremap <leader>F  :YcmCompleter FixIt<CR>
 
 " General NeoVim
 unmap Y
@@ -82,6 +81,17 @@ function! FoldJson()
     set foldmethod=syntax
 endfunction
 
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+
 " ##### PLUGIN OPTIONS #####
 
 " airline
@@ -112,7 +122,7 @@ let g:syntastic_auto_loc_list = 0
 
 let g:syntastic_python_python_exec = 'python3.11'
 let g:syntastic_python_checkers = ['python3.11', 'flake8', 'mypy']
-let g:syntastic_python_flake8_post_args='--ignore=E501,W503'
+let g:syntastic_python_flake8_post_args='--ignore=E501,W503,E203'
 let g:syntastic_python_mypy_post_args='--follow-imports silent'
 let g:syntastic_cpp_compiler= 'clang'
 let g:syntastic_aggregate_errors = 1
@@ -181,23 +191,27 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 " ""
+
+function! Jlc_recent_files()
+  return fzf#vim#_uniq(map(
+    \ filter([expand('%')], 'len(v:val)')
+    \   + filter(map(fzf#vim#_buflisted_sorted(), 'bufname(v:val)'), 'len(v:val)')
+    \   + filter(copy(v:oldfiles), "filereadable(fnamemodify(v:val, ':p'))"),
+    \ 'fnamemodify(v:val, ":~:.")'))
+endfunction
+
 command! -bang Jlc call fzf#run({
 \  'source': fzf#vim#_uniq(
 \   map(
 \       filter(
-\           extend(
-\               filter(
-\                   range(1, bufnr("$")),
-\                   "buflisted(v:val)"),
-\               copy(v:oldfiles),
-\           ),
+\           Jlc_recent_files(),
 \           "Filter_useless_files(v:val)",
 \       ),
 \       "Convert_file_to_current_repo(v:val)",
 \ )),
 \  'sink' : 'e',
 \  'down' : '30%',
-\  'options': '+m -x +s'})
+\  'options': '+m -x'})
 
 
 " tmux-vim-navigator
@@ -210,13 +224,16 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
-let g:ycm_log_level='debug'
-let g:ycm_use_clangd=1
-let g:ycm_clangd_args = ['-log=verbose', '-pretty']
-let g:ycm_log_level = 'debug'
-let g:ycm_server_log_level = 'debug'
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_collect_identifiers_from_tags_files=1
-let g:ycm_error_symbol = '>>'
-let g:ycm_warning_symbol = '!'
-let g:ycm_global_ycm_extra_conf='~/ycm_extra_conf.py'
+
+" YCM Config
+" nnoremap <leader>g  :YcmCompleter GoTo<CR> nnoremap <leader>F  :YcmCompleter FixIt<CR>
+" let g:ycm_log_level='debug'
+" let g:ycm_use_clangd=1
+" let g:ycm_clangd_args = ['-log=verbose', '-pretty']
+" let g:ycm_log_level = 'debug'
+" let g:ycm_server_log_level = 'debug'
+" let g:ycm_autoclose_preview_window_after_completion=1
+" let g:ycm_collect_identifiers_from_tags_files=1
+" let g:ycm_error_symbol = '>>'
+" let g:ycm_warning_symbol = '!'
+" let g:ycm_global_ycm_extra_conf='~/ycm_extra_conf.py'

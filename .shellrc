@@ -20,7 +20,7 @@ function gr(){
 function pc(){
    /usr/bin/env python3 -m pytest --cov-report=html:$(pwd)/html_cov --cov=.
 }
-export PATH="$HOME/.tfenv/bin:$PATH"
+export PATH=/home/jlchamaa/.local/nvim/bin:/home/jlchamaa/.local/bin:$PATH
 
 # Share SSH agent
 SSH_AGENT_ENV_PATH=/tmp/$USER\_ssh_agent_env
@@ -38,6 +38,7 @@ alias gwl='git worktree list'
 alias flake9='flake8 --ignore=E501'
 alias tmux='tmux -2u'
 alias 256='sha256sum'
+alias wb='tmux capture-pane -S - && tmux save-buffer /tmp/tmuxbuf && nvim /tmp/tmuxbuf'
 
 export WORKON_HOME=$HOME/workon_home
 export PROJECT_HOME=$HOME/Devel
