@@ -25,19 +25,15 @@ ln -s ~/JLConfig/.shellrc ~/.shellrc
 rm ~/.tmux.conf 
 ln -s ~/JLConfig/.tmux.conf ~/.tmux.conf
 
-# vimrc
-rm ~/.vimrc
-ln -s ~/JLConfig/.vimrc ~/.vimrc
-rm ~/.config/nvim/init.vim
-ln -s ~/JLConfig/init.vim ~/.config/nvim/init.vim
-
-# cpp.vim
-rm ~/.vim/ftplugin/cpp.vim
-ln -s ~/JLConfig/cpp.vim ~/.vim/ftplugin/cpp.vim
-
-# python.vim
-rm ~/.vim/ftplugin/python.vim
-ln -s ~/JLConfig/python.vim ~/.vim/ftplugin/python.vim
+# nvim config 
+rm ~/.config/nvim/init.lua
+ln -s ~/JLConfig/init.lua ~/.config/nvim/init.lua
+rm ~/.config/nvim/colors/ultraviolent.lua
+ln -s ~/JLConfig/ultraviolent.lua ~/.config/nvim/colors/ultraviolent.lua
+rm ~/.config/nvim/lua/plugins.lua
+ln -s ~/JLConfig/plugins.lua ~/.config/nvim/lua/plugins.lua
+rm ~/.config/nvim/lua/config/lazy.lua
+ln -s ~/JLConfig/lazy.lua ~/.config/nvim/lua/config/lazy.lua
 
 # zshrc
 rm ~/.zshrc
